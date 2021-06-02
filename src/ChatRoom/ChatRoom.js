@@ -41,35 +41,48 @@ const ChatRoom = (props) => {
   }, [isTyping]);
 
   return (
-    <div className="chat-room-container">
-      <div className="chat-room-top-bar">
-        <h1 className="room-name">Room: {roomId}</h1>
-        {user && <UserAvatar user={user}></UserAvatar>}
-      </div>
+    <div className="main-container">
+      <div className="chat-room-container">
 
-      <Users users={users}></Users>
-      
-      <div className="messages-container">
-        <ol className="messages-list">
-          {messages.map((message, i) => (
-            <li key={i}>
-              <ChatMessage message={message}></ChatMessage>
-            </li>
-          ))}
-          {typingUsers.map((user, i) => (
-            <li key={messages.length + i}>
-              <TypingMessage user={user}></TypingMessage>
-            </li>
-          ))}
-        </ol>
+        <div className="chat-room-top-bar">
+          <h1 className="room-name"> Group: {roomId} </h1>
+          <div className="header-avatar">
+            {user && <UserAvatar user={user}></UserAvatar>}
+          </div>
+        </div>
+
+        <div className="chat-main">
+          <div className="side-bar">
+            <Users users={users}></Users>
+          </div>
+
+          <div className="messages-body">
+            <div className="messages-container">
+              <ol className="messages-list">
+                {messages.map((message, i) => (
+                  <li key={i}>
+                    <ChatMessage message={message}></ChatMessage>
+                  </li>
+                ))}
+                {typingUsers.map((user, i) => (
+                  <li key={messages.length + i}>
+                    <TypingMessage user={user}></TypingMessage>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+
+
+        <NewMessageForm
+          newMessage={newMessage}
+          handleNewMessageChange={handleNewMessageChange}
+          handleStartTyping={startTyping}
+          handleStopTyping={stopTyping}
+          handleSendMessage={handleSendMessage}
+        ></NewMessageForm>
       </div>
-      <NewMessageForm
-        newMessage={newMessage}
-        handleNewMessageChange={handleNewMessageChange}
-        handleStartTyping={startTyping}
-        handleStopTyping={stopTyping}
-        handleSendMessage={handleSendMessage}
-      ></NewMessageForm>
     </div>
   );
 };

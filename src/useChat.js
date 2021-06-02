@@ -68,6 +68,11 @@ const useChat = (roomId) => {
     socketRef.current.on(USER_JOIN_CHAT_EVENT, (user) => {
       if (user.id === socketRef.current.id) return;
       setUsers((users) => [...users, user]);
+      let oldTitle = document.title;
+      document.title = `New user has joined`;
+      setTimeout(() => {
+        document.title = oldTitle;
+      }, 4000);
     });
 
     socketRef.current.on(USER_LEAVE_CHAT_EVENT, (user) => {
