@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import NewComponent from "../newComponent/newComponent";
+
 
 import "./Home.css";
 
@@ -23,7 +23,6 @@ const Home = () => {
       <Link to={`/${roomName}`} className="enter-room-button">
         Join room
       </Link>
-      <NewComponent></NewComponent>
     </div>
   );
 };
